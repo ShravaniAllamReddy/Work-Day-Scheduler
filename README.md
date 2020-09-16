@@ -33,3 +33,8 @@ dynamically updated HTML and CSS powered by jQuery.
 
 4. Usage of date and time formats using moment.js: https://momentjs.com/docs/
 
+
+ ## Deployed URL of the application
+
+ https://shravaniallamreddy.github.io/Work-Day-Scheduler/
+ 
