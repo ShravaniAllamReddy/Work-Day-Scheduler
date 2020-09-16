@@ -11,12 +11,12 @@ $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
 //This below function adds color to all the timeblocks created in html 
 $(".coloriser").each(function () {
+
     //this grabs the attribute 'id' from class 'timeblock' in class 'coloriser'
     time = $(this).find(".time-block").attr("id");
-    //momentjs time format to get the value of just 24hour time
+    //momentjs time format to get the value of military time
     currentTime = moment().format("H");
-   
-    // console.log(currentTime);
+
     //If current time is greater than the time in timeblock , then we add class 'past' which is in style.css(grey color)
     if (currentTime > parseInt(time)) {
         $(this).find(".calendartext").addClass("past");
@@ -44,19 +44,32 @@ $(".saveBtn").on("click", function (event) {
 
     //this sets the attribute 'id' from 'eventtext' class which is in 'coloriser' class to variable 'eventId'
     eventId = $(this).parent(".coloriser").find(".eventtext").attr("id");
-    // console.log(eventData);
-    // console.log(eventId);
-
 
     //This stores the value of eventData in 'eventId' variable
-    localStorage.setItem(eventId, eventData);
+    if (eventData !== "") {
+        localStorage.setItem(eventId, eventData);
+    }
+    else {
+        // //This deletes the event from local storage
+        // localStorage.removeItem(eventId);
+        alert("Please Enter some event");
+    }
 })
 
 //This gets the value which is stored in 'eventId' variable which checks for each 'eventext' class and grabs the attribute 'id'
 $(".eventtext").each(function () {
+    eventData = $(this).val().trim();
     eventId = $(this).attr("id");
+
+
     $(this).val(localStorage.getItem(eventId));
 
 })
+
+
+
+
+
+
 
 
